@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Strong Families Talks — Campogrande & Thezia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --teal-dark:  #1a5c6e;
+      --teal-mid:   #2a8fa8;
+      --teal-light: #5bc4d8;
+      --amber:      #f5a623;
+      --amber-light:#fdd87a;
+      --navy:       #1a3a5c;
+      --white:      #ffffff;
+      --gray-light: #f4f8fa;
+      --gray-mid:   #e0edf2;
+      --text:       #1a2d3a;
+      --text-soft:  #4a6272;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Open Sans', sans-serif; color: var(--text); background: var(--white); }
+
+    /* HERO */
+    .hero {
+      background: var(--white);
+      border-bottom: 3px solid var(--gray-mid);
+      padding: 48px 24px 40px;
+      text-align: center;
+    }
+    .hero img { max-width: 300px; width: 75%; margin-bottom: 20px; }
+    .hero-sub {
+      color: var(--teal-mid);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .hero-title {
+      color: var(--teal-dark);
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(20px, 4vw, 32px);
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+    .hero-desc {
+      color: var(--text-soft);
+      font-size: 14px;
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .colegio-logo-wrap img {
+      height: 64px;
+      width: auto;
+      object-fit: contain;
+    }
+    .colegio-logo-wrap span {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-soft);
+    }
+    .hero-colegios-sep {
+      color: var(--gray-mid);
+      font-size: 28px;
+      font-weight: 300;
+    }
+
+    /* NAV */
+    nav {
+      background: var(--teal-dark);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0 20px;
+    }
+    .nav-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 52px;
+    }
+    .nav-label { display: none; }
+    .nav-dropdown {
+      position: relative;
+    }
+    .nav-btn {
+      background: var(--amber);
+      color: var(--navy);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 8px 16px;
+      border-radius: 20px;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+    .nav-btn:hover { background: var(--amber-light); }
+    .nav-btn .arrow {
+      font-size: 10px;
+      transition: transform 0.2s;
+    }
+    .nav-dropdown.open .arrow { transform: rotate(180deg); }
+    .nav-menu {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: calc(100% + 8px);
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+      overflow: hidden;
+      min-width: 260px;
+      z-index: 200;
+    }
+    .nav-dropdown.open .nav-menu { display: block; }
+    .nav-menu a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--teal-dark);
+      text-decoration: none;
+      border-bottom: 1px solid var(--gray-mid);
+      transition: background 0.15s;
+    }
+    .nav-menu a:last-child { border-bottom: none; }
+    .nav-menu a:hover { background: var(--gray-light); }
+    .nav-menu-num {
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      background: var(--amber);
+      color: var(--navy);
+      font-size: 11px;
+      font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* MAIN */
+    main { max-width: 900px; margin: 0 auto; padding: 0 20px 80px; }
+
+    /* PILAR HEADER */
+    .pilar-header {
+      margin: 56px 0 28px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .pilar-num {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: var(--amber);
+      color: var(--navy);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 16px;
+      font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .pilar-info h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--teal-dark);
+    }
+    .pilar-info p {
+      font-size: 12px;
+      color: var(--text-soft);
+      margin-top: 2px;
+    }
+
+    /* CURSO CARD */
+    .curso {
+      background: var(--white);
+      border: 1.5px solid var(--gray-mid);
+      border-radius: 16px;
+      margin-bottom: 20px;
+      overflow: hidden;
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+    .curso:hover { box-shadow: 0 6px 24px rgba(26,92,110,0.1); transform: translateY(-2px); }
+    .curso-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 20px 20px 16px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .curso-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--teal-mid), var(--teal-light));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .curso-meta { flex: 1; }
+    .curso-colegio {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--teal-mid);
+      margin-bottom: 3px;
+    }
+    .curso-nombre {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--teal-dark);
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+    .curso-chips { display: flex; flex-wrap: wrap; gap: 5px; }
+    .chip {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 20px;
+      background: var(--gray-light);
+      color: var(--text-soft);
+    }
+    .chip.amber { background: var(--amber-light); color: #7a4f00; }
+    .chip.teal  { background: #d0eef5; color: var(--teal-dark); }
+    .chip.pink  { background: #fde8f0; color: #8b2252; }
+    .curso-toggle {
+      font-size: 18px;
+      color: var(--teal-mid);
+      transition: transform 0.25s;
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+    .curso.open .curso-toggle { transform: rotate(180deg); }
+
+    /* BODY */
+    .curso-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+    .curso.open .curso-body { max-height: 1400px; }
+    .curso-inner {
+      padding: 0 20px 24px;
+      border-top: 1.5px solid var(--gray-mid);
+    }
+
+    /* INFO GRID */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 16px;
+    }
+    @media (max-width: 540px) { .info-grid { grid-template-columns: 1fr; } }
+    .info-block h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--teal-mid);
+      margin-bottom: 5px;
+    }
+    .info-block p { font-size: 13px; color: var(--text-soft); line-height: 1.6; }
+    .info-block.full { grid-column: 1 / -1; }
+
+    /* SESIONES */
+    .sesiones { margin-top: 16px; }
+    .sesiones h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--teal-mid);
+      margin-bottom: 8px;
+    }
+    .sesion-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--gray-mid);
+    }
+    .sesion-row:last-child { border-bottom: none; }
+    .sesion-num {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      background: var(--teal-dark);
+      color: var(--white);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .sesion-info { flex: 1; }
+    .sesion-tema { font-size: 13px; font-weight: 600; color: var(--text); }
+    .sesion-fecha { font-size: 12px; color: var(--text-soft); margin-top: 2px; }
+
+    /* CTA */
+    .cta-wrap { margin-top: 20px; }
+    .btn-inscribir {
+      display: inline-block;
+      background: var(--amber);
+      color: var(--navy);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      padding: 11px 24px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-inscribir:hover { background: var(--amber-light); transform: translateY(-1px); }
+
+    /* FOOTER */
+    footer {
+      background: var(--teal-dark);
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      padding: 28px 24px;
+      font-size: 13px;
+    }
+    footer strong { color: var(--white); }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <img src="assets/logo.png" alt="Strong Families Talks"/>
+  <p class="hero-sub">Campogrande · Thezia — Ciclo 2026–2027</p>
+  <h1 class="hero-title">Formación para familias fuertes</h1>
+  <p class="hero-desc">Talleres y sesiones diseñados para acompañar a los padres en los grandes temas de la vida familiar.</p>
+</section>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-dropdown" id="navDropdown">
+      <button class="nav-btn" onclick="toggleNav()">
+        Enfoques formativos <span class="arrow">▾</span>
+      </button>
+      <div class="nav-menu">
+        <a href="#pilar1" onclick="closeNav()"><span class="nav-menu-num">1</span>Matrimonio y vida familiar</a>
+        <a href="#pilar2" onclick="closeNav()"><span class="nav-menu-num">2</span>Educación del carácter y virtudes</a>
+        <a href="#pilar3" onclick="closeNav()"><span class="nav-menu-num">3</span>Autoconocimiento e identidad</a>
+        <a href="#pilar4" onclick="closeNav()"><span class="nav-menu-num">4</span>Fe y vida espiritual</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ══ PILAR 1: MATRIMONIO ══ -->
+  <div class="pilar-header" id="pilar1">
+    <div class="pilar-num">1</div>
+    <div class="pilar-info">
+      <h2>Matrimonio y vida familiar</h2>
+      <p>Fortalecer la relación de pareja y la dinámica familiar</p>
+    </div>
+  </div>
+
+  <!-- CONECTA THEZIA -->
+  <div class="curso">
+    <div class="curso-header" onclick="toggle(this)">
+      <div class="curso-icon">🔗</div>
+      <div class="curso-meta">
+        <div class="curso-colegio">Thezia</div>
+        <div class="curso-nombre">CONECTA</div>
+        <div class="curso-chips">
+          <span class="chip teal">5 sesiones</span>
+          <span class="chip amber">30 sept – 8 abr</span>
+          <span class="chip pink">Solo matrimonios Thezia</span>
+        </div>
+      </div>
+      <div class="curso-toggle">▾</div>
+    </div>
+    <div class="curso-body">
+      <div class="curso-inner">
+        <div class="info-grid">
+          <div class="info-block full">
+            <h4>Sobre el taller</h4>
+            <p>Por definir</p>
+          </div>
+          <div class="info-block">
+            <h4>Ponente</h4>
+            <p>Por definir</p>
+          </div>
+          <div class="info-block">
+            <h4>Lugar</h4>
+            <p>Thezia</p>
+          </div>
+          <div class="info-block">
+            <h4>Dirigido a</h4>
+            <p>Matrimonios Thezia · Todas las edades</p>
+          </div>
+          <div class="info-block">
+            <h4>Taller para</h4>
+            <p>Matrimonios</p>
+          </div>
+        </div>
+        <div class="sesiones">
+          <h4>Sesiones</h4>
+          <div class="sesion-row"><div class="sesion-num">1</div><div class="sesion-info"><div class="sesion-tema">Por definir</div><div class="sesion-fecha">30 de septiembre 2026</div></div></div>
+          <div class="sesion-row"><div class="sesion-num">2</div><div class="sesion-info"><div class="sesion-tema">Por definir</div><div class="sesion-fecha">29 de octubre 2026</div></div></div>
+          <div class="sesion-row"><div class="sesion-num">3</div><div class="sesion-info"><div class="sesion-tema">Por definir</div><div class="sesion-fecha">25 de noviembre 2026</div></div></div>
+          <div class="sesion-row"><div class="sesion-num">4</div><div class="sesion-info"><div class="sesion-tema">Por definir</div><div class="sesion-fecha">11 de febrero 2027</div></div></div>
+          <div class="sesion-row"><div class="sesion-num">5</div><div class="sesion-info"><div class="sesion-tema">Por definir</div><div class="sesion-fecha">8 de abril 2027</div></div></div>
+        </div>
+        <div class="cta-wrap"><a href="#" class="btn-inscribir">Inscribirme →</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONECTA KINDER -->
+  <div class="curso">
+    <div class="curso-header" onclick="toggle(this)">
+      <div class="curso-icon">🧒</div>
+      <div class="curso-meta">
+        <div class="curso-colegio">Campogrande</div>
+        <div class="curso-nombre">CONECTA Kinder</div>
+        <div class="curso-chips">
+          <span class="chip teal">3 sesiones</span>
+          <span class="chip amber">Por definir</span>
+          <span class="chip pink">Solo matrimonios Kinder CG</span>
+        </div>
+      </div>
+      <div class="curso-toggle">▾</div>
+    </div>
+    <div class="curso-body">
+      <div class="curso-inner">
+        <div class="info-grid">
+          <div class="info-block full"><h4>Sobre el taller</h4><p>Por definir</p></div>
+          <div class="info-block"><h4>Ponente</h4><p>Por definir</p></div>
+          <div class="info-block"><h4>Lugar</h4><p>Campogrande</p></div>
+          <div class="info-block"><h4>Dirigido a</h4><p>Matrimonios Kinder Campogrande</p></div>
+          <div class="info-block"><h4>Taller para</h4><p>Matrimonios</p></div>
+        </div>
+        <div class="sesiones">
+          <h4>Sesiones</h4>
+          <div class="sesion-row"><div class="sesion-num">1</div><div class="sesion-info"><div class="sesion-tema">Por definir</div><div class="sesion-fecha">Por definir</div></div></div>
+          <div class="sesion-row"><div class="sesion-num">2</div><div class="sesion-info"><div class="sesion-tema">Por definir</div><div class="sesion-fecha">Por definir</div></div></div>
+          <div class="sesion-row"><div class="sesion-num">3</div><div class="sesion-info"><div class="sesion-tema">Por definir</div><div class="sesion-fecha">Por definir</div></div></div>
+        </div>
+        <div class="cta-wrap"><a href="#" class="btn-inscribir">Inscribirme →</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROYECTO FAMILIAR -->
+  <div class="curso">
+    <div class="curso-header" onclick="toggle(this)">
+      <div class="curso-icon">🏡</div>
+      <div class="curso-meta">
+        <div class="curso-colegio">Campogrande</div>
+        <div class="curso-nombre">Proyecto Familiar</div>
+        <div class="curso-chips">
+          <span class="chip teal">1 sesión</span>
+          <span class="chip">19:30 h</span>
+          <span class="chip amber">Por definir</span>
+        </div>
+      </div>
+      <div class="curso-toggle">▾</div>
+    </div>
+    <div class="curso-body">
+      <div class="curso-inner">
+        <div class="info-grid">
+          <div class="info-block full"><h4>Sobre el taller</h4><p>Por definir</p></div>
+          <div class="info-block"><h4>Ponente</h4><p>Daniel Villegas</p></div>
+          <div class="info-block"><h4>Lugar y fecha</h4><p>Campogrande · Por definir · 19:30 h</p></div>
+          <div class="info-block"><h4>Dirigido a</h4><p>Todas las edades</p></div>
+          <div class="info-block"><h4>Taller para</h4><p>Ambos padres</p></div>
+        </div>
+        <div class="cta-wrap"><a href="#" class="btn-inscribir">Inscribirme →</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ PILAR 2: EDUCACIÓN DEL CARÁCTER ══ -->
+  <div class="pilar-header" id="pilar2">
+    <div class="pilar-num">2</div>
+    <div class="pilar-info">
+      <h2>Educación del carácter y virtudes</h2>
+      <p>Herramientas para acompañar el desarrollo de los hijos</p>
+    </div>
+  </div>
+
+  <!-- EDUCAR PRIMARIA -->
+  <div class="curso">
+    <div class="curso-header" onclick="toggle(this)">
+      <div class="curso-icon">📚</div>
+      <div class="curso-meta">
+        <div class="curso-colegio">Thezia</div>
+        <div class="curso-nombre">Educar el Corazón (Primaria)</div>
+        <div class="curso-chips">
+          <span class="chip teal">1 sesión</span>
+          <span class="chip">19:30 h</span>
+          <span class="chip amber">20 ene 2027</span>
+        </div>
+      </div>
+      <div class="curso-toggle">▾</div>
+    </div>
+    <div class="curso-body">
+      <div class="curso-inner">
+        <div class="info-grid">
+          <div class="info-block full"><h4>Sobre el taller</h4><p>Por definir</p></div>
+          <div class="info-block"><h4>Ponente</h4><p>Por definir</p></div>
+          <div class="info-block"><h4>Lugar y fecha</h4><p>Thezia · 20 de enero 2027 · 19:30 h</p></div>
+          <div class="info-block"><h4>Dirigido a</h4><p>Familias con hijos de 6 a 12 años</p></div>
+          <div class="info-block"><h4>Taller para</h4><p>Ambos padres</p></div>
+        </div>
+        <div class="cta-wrap"><a href="#" class="btn-inscribir">Inscribirme →</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EDUCAR KINDER -->
+  <div class="curso">
+    <div class="curso-header" onclick="toggle(this)">
+      <div class="curso-icon">🌱</div>
+      <div class="curso-meta">
+        <div class="curso-colegio">Thezia</div>
+        <div class="curso-nombre">Educar el Corazón (Kinder)</div>
+        <div class="curso-chips">
+          <span class="chip teal">1 sesión</span>
+          <span class="chip">19:30 h</span>
+          <span class="chip amber">19 ene 2027</span>
+        </div>
+      </div>
+      <div class="curso-toggle">▾</div>
+    </div>
+    <div class="curso-body">
+      <div class="curso-inner">
+        <div class="info-grid">
+          <div class="info-block full"><h4>Sobre el taller</h4><p>Por definir</p></div>
+          <div class="info-block"><h4>Ponente</h4><p>Por definir</p></div>
+          <div class="info-block"><h4>Lugar y fecha</h4><p>Thezia · 19 de enero 2027 · 19:30 h</p></div>
+          <div class="info-block"><h4>Dirigido a</h4><p>Familias con hijos en Kinder</p></div>
+          <div class="info-block"><h4>Taller para</h4><p>Ambos padres</p></div>
+        </div>
+        <div class="cta-wrap"><a href="#" class="btn-inscribir">Inscribirme →</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIRECCIÓN HOGAR EMPRESA -->
+  <div class="curso">
+    <div class="curso-header" onclick="toggle(this)">
+      <div class="curso-icon">🏠</div>
+      <div class="curso-meta">
+        <div class="curso-colegio">Thezia</div>
+        <div class="curso-nombre">Dirección Hogar Empresa</div>
+        <div class="curso-chips">
+          <span class="chip teal">4 sesiones</span>
+          <span class="chip amber">27 oct – 22 abr</span>
+          <span class="chip pink">Solo mamás</span>
+        </div>
+      </div>
+      <div class="curso-toggle">▾</div>
+    </div>
+    <div class="curso-body">
+      <div class="curso-inner">
+        <div class="info-grid">
+          <div class="info-block full"><h4>Sobre el taller</h4><p>Por definir</p></div>
+          <div class="info-block"><h4>Ponente</h4><p>Por definir</p></div>
+          <div class="info-block"><h4>Lugar</h4><p>Thezia</p></div>
+          <div class="info-block"><h4>Dirigido a</h4><p>Todas las mamás</p></div>
+          <div class="info-block"><h4>Taller para</h4><p>Mamás</p></div>
+        </div>
+        <div class="sesiones">
+          <h4>Sesiones</h4>
+          <div class="sesion-row"><div class="sesion-num">1</div><div class="sesion-info"><div class="sesion-tema">Por definir</div><div class="sesion-fecha">27 de octubre 2026</div></div></div>
+          <div class="sesion-row"><div class="sesion-num">2</div><div class="sesion-info"><div class="sesion-tema">Por definir</div><div class="sesion-fecha">2 de diciembre 2026</div></div></div>
+          <div class="sesion-row"><div class="sesion-num">3</div><div class="sesion-info"><div class="sesion-tema">Por definir</div><div class="sesion-fecha">26 de enero 2027</div></div></div>
+          <div class="sesion-row"><div class="sesion-num">4</div><div class="sesion-info"><div class="sesion-tema">Por definir</div><div class="sesion-fecha">22 de abril 2027</div></div></div>
+        </div>
+        <div class="cta-wrap"><a href="#" class="btn-inscribir">Inscribirme →</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CRECER ENTRE PANTALLAS -->
+  <div class="curso">
+    <div class="curso-header" onclick="toggle(this)">
+      <div class="curso-icon">📱</div>
+      <div class="curso-meta">
+        <div class="curso-colegio">Campogrande</div>
+        <div class="curso-nombre">Crecer Entre Pantallas</div>
+        <div class="curso-chips">
+          <span class="chip teal">1 sesión</span>
+          <span class="chip">19:30 h</span>
+          <span class="chip amber">19 nov 2026</span>
+        </div>
+      </div>
+      <div class="curso-toggle">▾</div>
+    </div>
+    <div class="curso-body">
+      <div class="curso-inner">
+        <div class="info-grid">
+          <div class="info-block full"><h4>Sobre el taller</h4><p>Por definir</p></div>
+          <div class="info-block"><h4>Ponente</h4><p>Cristina Fortuny</p></div>
+          <div class="info-block"><h4>Lugar y fecha</h4><p>Campogrande · 19 de noviembre 2026 · 19:30 h</p></div>
+          <div class="info-block"><h4>Dirigido a</h4><p>Familias con hijos de 3 a 12 años</p></div>
+          <div class="info-block"><h4>Taller para</h4><p>Ambos padres</p></div>
+        </div>
+        <div class="cta-wrap"><a href="#" class="btn-inscribir">Inscribirme →</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CUANDO JUGAR -->
+  <div class="curso">
+    <div class="curso-header" onclick="toggle(this)">
+      <div class="curso-icon">🎮</div>
+      <div class="curso-meta">
+        <div class="curso-colegio">Campogrande</div>
+        <div class="curso-nombre">Cuando Jugar Deja de Ser un Juego</div>
+        <div class="curso-chips">
+          <span class="chip teal">1 sesión</span>
+          <span class="chip">19:30 h</span>
+          <span class="chip amber">18 nov 2026</span>
+        </div>
+      </div>
+      <div class="curso-toggle">▾</div>
+    </div>
+    <div class="curso-body">
+      <div class="curso-inner">
+        <div class="info-grid">
+          <div class="info-block full"><h4>Sobre el taller</h4><p>Por definir</p></div>
+          <div class="info-block"><h4>Ponente</h4><p>Cristina Fortuny</p></div>
+          <div class="info-block"><h4>Lugar y fecha</h4><p>Campogrande · 18 de noviembre 2026 · 19:30 h</p></div>
+          <div class="info-block"><h4>Dirigido a</h4><p>Familias con hijos de 12 a 18 años</p></div>
+          <div class="info-block"><h4>Taller para</h4><p>Ambos padres</p></div>
+        </div>
+        <div class="cta-wrap"><a href="#" class="btn-inscribir">Inscribirme →</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ PILAR 3: AUTOCONOCIMIENTO ══ -->
+  <div class="pilar-header" id="pilar3">
+    <div class="pilar-num">3</div>
+    <div class="pilar-info">
+      <h2>Autoconocimiento e identidad</h2>
+      <p>Conocerse mejor para ser mejores padres</p>
+    </div>
+  </div>
+
+  <!-- BARANSÚ -->
+  <div class="curso">
+    <div class="curso-header" onclick="toggle(this)">
+      <div class="curso-icon">🌿</div>
+      <div class="curso-meta">
+        <div class="curso-colegio">Thezia</div>
+        <div class="curso-nombre">Baransú</div>
+        <div class="curso-chips">
+          <span class="chip teal">1 sesión</span>
+          <span class="chip">19:30 h</span>
+          <span class="chip amber">4 mar 2027</span>
+        </div>
+      </div>
+      <div class="curso-toggle">▾</div>
+    </div>
+    <div class="curso-body">
+      <div class="curso-inner">
+        <div class="info-grid">
+          <div class="info-block full"><h4>Sobre el taller</h4><p>Por definir</p></div>
+          <div class="info-block"><h4>Ponente</h4><p>Ana Torres</p></div>
+          <div class="info-block"><h4>Lugar y fecha</h4><p>Thezia · 4 de marzo 2027 · 19:30 h</p></div>
+          <div class="info-block"><h4>Dirigido a</h4><p>Todas las edades</p></div>
+          <div class="info-block"><h4>Taller para</h4><p>Ambos padres</p></div>
+        </div>
+        <div class="cta-wrap"><a href="#" class="btn-inscribir">Inscribirme →</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GESTOS DE CARIÑO THEZIA -->
+  <div class="curso">
+    <div class="curso-header" onclick="toggle(this)">
+      <div class="curso-icon">❤️</div>
+      <div class="curso-meta">
+        <div class="curso-colegio">Thezia</div>
+        <div class="curso-nombre">Gestos de Cariño</div>
+        <div class="curso-chips">
+          <span class="chip teal">2 sesiones</span>
+          <span class="chip">19:30 h</span>
+          <span class="chip amber">14–15 abr 2027</span>
+        </div>
+      </div>
+      <div class="curso-toggle">▾</div>
+    </div>
+    <div class="curso-body">
+      <div class="curso-inner">
+        <div class="info-grid">
+          <div class="info-block full"><h4>Sobre el taller</h4><p>Por definir</p></div>
+          <div class="info-block"><h4>Ponente</h4><p>LovED</p></div>
+          <div class="info-block"><h4>Lugar</h4><p>Thezia</p></div>
+          <div class="info-block"><h4>Dirigido a</h4><p>Familias con hijas de 14 a 18 años</p></div>
+          <div class="info-block"><h4>Taller para</h4><p>Ambos padres</p></div>
+        </div>
+        <div class="sesiones">
+          <h4>Sesiones</h4>
+          <div class="sesion-row"><div class="sesion-num">1</div><div class="sesion-info"><div class="sesion-tema">Por definir</div><div class="sesion-fecha">14 de abril 2027 · 19:30 h</div></div></div>
+          <div class="sesion-row"><div class="sesion-num">2</div><div class="sesion-info"><div class="sesion-tema">Por definir</div><div class="sesion-fecha">15 de abril 2027 · 19:30 h</div></div></div>
+        </div>
+        <div class="cta-wrap"><a href="#" class="btn-inscribir">Inscribirme →</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GESTOS DE CARIÑO CAMPOGRANDE -->
+  <div class="curso">
+    <div class="curso-header" onclick="toggle(this)">
+      <div class="curso-icon">❤️</div>
+      <div class="curso-meta">
+        <div class="curso-colegio">Campogrande</div>
+        <div class="curso-nombre">Gestos de Cariño</div>
+        <div class="curso-chips">
+          <span class="chip teal">2 sesiones</span>
+          <span class="chip">19:30 h</span>
+          <span class="chip amber">13–14 abr 2027</span>
+        </div>
+      </div>
+      <div class="curso-toggle">▾</div>
+    </div>
+    <div class="curso-body">
+      <div class="curso-inner">
+        <div class="info-grid">
+          <div class="info-block full"><h4>Sobre el taller</h4><p>Por definir</p></div>
+          <div class="info-block"><h4>Ponente</h4><p>LovED</p></div>
+          <div class="info-block"><h4>Lugar</h4><p>Campogrande</p></div>
+          <div class="info-block"><h4>Dirigido a</h4><p>Familias con hijos varones de 14 a 18 años</p></div>
+          <div class="info-block"><h4>Taller para</h4><p>Ambos padres</p></div>
+        </div>
+        <div class="sesiones">
+          <h4>Sesiones</h4>
+          <div class="sesion-row"><div class="sesion-num">1</div><div class="sesion-info"><div class="sesion-tema">Por definir</div><div class="sesion-fecha">13 de abril 2027 · 19:30 h</div></div></div>
+          <div class="sesion-row"><div class="sesion-num">2</div><div class="sesion-info"><div class="sesion-tema">Por definir</div><div class="sesion-fecha">14 de abril 2027 · 19:30 h</div></div></div>
+        </div>
+        <div class="cta-wrap"><a href="#" class="btn-inscribir">Inscribirme →</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ PILAR 4: FE Y VIDA ESPIRITUAL ══ -->
+  <div class="pilar-header" id="pilar4">
+    <div class="pilar-num">4</div>
+    <div class="pilar-info">
+      <h2>Fe y vida espiritual</h2>
+      <p>Cultivar la dimensión espiritual en el hogar</p>
+    </div>
+  </div>
+
+  <!-- VIVIR LA PIEDAD -->
+  <div class="curso">
+    <div class="curso-header" onclick="toggle(this)">
+      <div class="curso-icon">🙏</div>
+      <div class="curso-meta">
+        <div class="curso-colegio">Campogrande</div>
+        <div class="curso-nombre">Vivir la Piedad en Familia</div>
+        <div class="curso-chips">
+          <span class="chip teal">1 sesión</span>
+          <span class="chip">19:30 h</span>
+          <span class="chip amber">1 dic 2026</span>
+        </div>
+      </div>
+      <div class="curso-toggle">▾</div>
+    </div>
+    <div class="curso-body">
+      <div class="curso-inner">
+        <div class="info-grid">
+          <div class="info-block full"><h4>Sobre el taller</h4><p>Por definir</p></div>
+          <div class="info-block"><h4>Ponente</h4><p>P. José María</p></div>
+          <div class="info-block"><h4>Lugar y fecha</h4><p>Campogrande · 1 de diciembre 2026 · 19:30 h</p></div>
+          <div class="info-block"><h4>Dirigido a</h4><p>Familias con hijos de 6 a 12 años</p></div>
+          <div class="info-block"><h4>Taller para</h4><p>Ambos padres</p></div>
+        </div>
+        <div class="cta-wrap"><a href="#" class="btn-inscribir">Inscribirme →</a></div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <strong>Strong Families Talks</strong> · Campogrande &amp; Thezia · Ciclo 2026–2027
+</footer>
+
+<script>
+  function toggle(header) {
+    const curso = header.closest('.curso');
+    curso.classList.toggle('open');
+  }
+</script>
+</body>
+</html>
