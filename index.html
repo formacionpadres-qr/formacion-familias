@@ -7,11 +7,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --teal-dark:  #1a5c6e;
-      --teal-mid:   #2a8fa8;
-      --teal-light: #5bc4d8;
-      --amber:      #f5a623;
-      --amber-light:#fdd87a;
+      --teal-dark:  #145f7d;
+      --teal-mid:   #1f7d9c;
+      --teal-light: #5fc4e1;
+      --amber:      #f6a016;
+      --amber-light:#fcc362;
       --navy:       #1a3a5c;
       --white:      #ffffff;
       --gray-light: #f4f8fa;
@@ -56,6 +56,7 @@
     .colegio-logo-wrap img {
       height: 64px;
       width: auto;
+      max-width: 33vw;
       object-fit: contain;
     }
     .colegio-logo-wrap span {
@@ -70,6 +71,35 @@
       color: var(--gray-mid);
       font-size: 28px;
       font-weight: 300;
+    }
+    .hero-colegios {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    /* HERO DECORATIVE SHAPES */
+    .hero { position: relative; overflow: hidden; }
+    .hero-shapes {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero-shapes svg { position: absolute; }
+    .hero-shapes .shape-wave-tl { top: -18px; left: -18px; width: 110px; }
+    .hero-shapes .shape-dot-tr { top: 28px; right: 40px; width: 20px; }
+    .hero-shapes .shape-dot-bl { bottom: 34px; left: 48px; width: 16px; }
+    .hero-shapes .shape-wave-br { bottom: -22px; right: -22px; width: 130px; }
+    .hero > *:not(.hero-shapes) { position: relative; z-index: 1; }
+    @media (max-width: 600px) {
+      .hero-shapes .shape-dot-tr,
+      .hero-shapes .shape-dot-bl { display: none; }
+      .hero-shapes .shape-wave-tl { width: 70px; top: -12px; left: -12px; }
+      .hero-shapes .shape-wave-br { width: 80px; bottom: -14px; right: -14px; }
     }
 
     /* NAV */
@@ -210,6 +240,11 @@
       display: flex; align-items: center; justify-content: center;
       font-size: 20px;
       flex-shrink: 0;
+      overflow: hidden;
+    }
+    .curso-icon img {
+      width: 100%; height: 100%;
+      object-fit: cover;
     }
     .curso-meta { flex: 1; }
     .curso-colegio {
@@ -342,8 +377,19 @@
 
 <!-- HERO -->
 <section class="hero">
+  <div class="hero-shapes">
+    <svg class="shape-wave-tl" viewBox="0 0 100 40" fill="none"><path d="M5,5 C5,32 95,32 95,5" stroke="#FCC362" stroke-width="16" stroke-linecap="round"/></svg>
+    <svg class="shape-dot-tr" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#F6A016"/></svg>
+    <svg class="shape-dot-bl" viewBox="0 0 16 16"><circle cx="8" cy="8" r="8" fill="#145F7D"/></svg>
+    <svg class="shape-wave-br" viewBox="0 0 100 40" fill="none"><path d="M5,35 C5,8 95,8 95,35" stroke="#5FC4E1" stroke-width="16" stroke-linecap="round"/></svg>
+  </div>
   <img src="assets/logo.png" alt="Strong Families Talks"/>
-  <p class="hero-sub">Campogrande · Thezia — Ciclo 2026–2027</p>
+  <div class="hero-colegios">
+    <div class="colegio-logo-wrap"><img src="assets/campogrande-logo.png" alt="Campogrande"/></div>
+    <span class="hero-colegios-sep">+</span>
+    <div class="colegio-logo-wrap"><img src="assets/thezia-logo.png" alt="Thezia"/></div>
+  </div>
+  <p class="hero-sub">Ciclo 2026–2027</p>
   <h1 class="hero-title">Formación para familias fuertes</h1>
   <p class="hero-desc">Talleres y sesiones diseñados para acompañar a los padres en los grandes temas de la vida familiar.</p>
 </section>
@@ -376,62 +422,10 @@
     </div>
   </div>
 
-  <!-- CONECTA THEZIA -->
-  <div class="curso">
-    <div class="curso-header" onclick="toggle(this)">
-      <div class="curso-icon">🔗</div>
-      <div class="curso-meta">
-        <div class="curso-colegio">Thezia</div>
-        <div class="curso-nombre">CONECTA</div>
-        <div class="curso-chips">
-          <span class="chip teal">5 sesiones</span>
-          <span class="chip amber">30 sept – 8 abr</span>
-          <span class="chip pink">Solo matrimonios Thezia</span>
-        </div>
-      </div>
-      <div class="curso-toggle">▾</div>
-    </div>
-    <div class="curso-body">
-      <div class="curso-inner">
-        <div class="info-grid">
-          <div class="info-block full">
-            <h4>Sobre el taller</h4>
-            <p>Por definir</p>
-          </div>
-          <div class="info-block">
-            <h4>Ponente</h4>
-            <p>Por definir</p>
-          </div>
-          <div class="info-block">
-            <h4>Lugar</h4>
-            <p>Thezia</p>
-          </div>
-          <div class="info-block">
-            <h4>Dirigido a</h4>
-            <p>Matrimonios Thezia · Todas las edades</p>
-          </div>
-          <div class="info-block">
-            <h4>Taller para</h4>
-            <p>Matrimonios</p>
-          </div>
-        </div>
-        <div class="sesiones">
-          <h4>Sesiones</h4>
-          <div class="sesion-row"><div class="sesion-num">1</div><div class="sesion-info"><div class="sesion-tema">Por definir</div><div class="sesion-fecha">30 de septiembre 2026</div></div></div>
-          <div class="sesion-row"><div class="sesion-num">2</div><div class="sesion-info"><div class="sesion-tema">Por definir</div><div class="sesion-fecha">29 de octubre 2026</div></div></div>
-          <div class="sesion-row"><div class="sesion-num">3</div><div class="sesion-info"><div class="sesion-tema">Por definir</div><div class="sesion-fecha">25 de noviembre 2026</div></div></div>
-          <div class="sesion-row"><div class="sesion-num">4</div><div class="sesion-info"><div class="sesion-tema">Por definir</div><div class="sesion-fecha">11 de febrero 2027</div></div></div>
-          <div class="sesion-row"><div class="sesion-num">5</div><div class="sesion-info"><div class="sesion-tema">Por definir</div><div class="sesion-fecha">8 de abril 2027</div></div></div>
-        </div>
-        <div class="cta-wrap"><a href="#" class="btn-inscribir">Inscribirme →</a></div>
-      </div>
-    </div>
-  </div>
-
   <!-- CONECTA KINDER -->
   <div class="curso">
     <div class="curso-header" onclick="toggle(this)">
-      <div class="curso-icon">🧒</div>
+      <div class="curso-icon"><img src="assets/iconos/conecta-amber.png" alt="Conecta"/></div>
       <div class="curso-meta">
         <div class="curso-colegio">Campogrande</div>
         <div class="curso-nombre">CONECTA Kinder</div>
@@ -458,7 +452,7 @@
           <div class="sesion-row"><div class="sesion-num">2</div><div class="sesion-info"><div class="sesion-tema">Por definir</div><div class="sesion-fecha">Por definir</div></div></div>
           <div class="sesion-row"><div class="sesion-num">3</div><div class="sesion-info"><div class="sesion-tema">Por definir</div><div class="sesion-fecha">Por definir</div></div></div>
         </div>
-        <div class="cta-wrap"><a href="#" class="btn-inscribir">Inscribirme →</a></div>
+        <div class="cta-wrap"><a href="https://docs.google.com/forms/d/e/1FAIpQLSfRXkYzbZgJ_IGxaHSsOEBYdhhZ4_l0tghVklS6x6bGkcY31Q/viewform" class="btn-inscribir">Inscribirme →</a></div>
       </div>
     </div>
   </div>
@@ -466,7 +460,7 @@
   <!-- PROYECTO FAMILIAR -->
   <div class="curso">
     <div class="curso-header" onclick="toggle(this)">
-      <div class="curso-icon">🏡</div>
+      <div class="curso-icon"><img src="assets/iconos/casa-corazon.png" alt="Proyecto Familiar"/></div>
       <div class="curso-meta">
         <div class="curso-colegio">Campogrande</div>
         <div class="curso-nombre">Proyecto Familiar</div>
@@ -487,7 +481,7 @@
           <div class="info-block"><h4>Dirigido a</h4><p>Todas las edades</p></div>
           <div class="info-block"><h4>Taller para</h4><p>Ambos padres</p></div>
         </div>
-        <div class="cta-wrap"><a href="#" class="btn-inscribir">Inscribirme →</a></div>
+        <div class="cta-wrap"><a href="https://docs.google.com/forms/d/e/1FAIpQLSdZJHtyB6Ty4DxdQd5vROvrSpGSkUDqoNctQ2JozTctWk0vmw/viewform" class="btn-inscribir">Inscribirme →</a></div>
       </div>
     </div>
   </div>
@@ -504,7 +498,7 @@
   <!-- EDUCAR PRIMARIA -->
   <div class="curso">
     <div class="curso-header" onclick="toggle(this)">
-      <div class="curso-icon">📚</div>
+      <div class="curso-icon"><img src="assets/iconos/libro-corazon-amber.png" alt="Educar el Corazon"/></div>
       <div class="curso-meta">
         <div class="curso-colegio">Thezia</div>
         <div class="curso-nombre">Educar el Corazón (Primaria)</div>
@@ -525,7 +519,7 @@
           <div class="info-block"><h4>Dirigido a</h4><p>Familias con hijos de 6 a 12 años</p></div>
           <div class="info-block"><h4>Taller para</h4><p>Ambos padres</p></div>
         </div>
-        <div class="cta-wrap"><a href="#" class="btn-inscribir">Inscribirme →</a></div>
+        <div class="cta-wrap"><a href="https://docs.google.com/forms/d/e/1FAIpQLSd8bSwkPBIyicW0ygwYP2ljuY3KmnuvQYszZ4mXE3DBweKasA/viewform" class="btn-inscribir">Inscribirme →</a></div>
       </div>
     </div>
   </div>
@@ -533,7 +527,7 @@
   <!-- EDUCAR KINDER -->
   <div class="curso">
     <div class="curso-header" onclick="toggle(this)">
-      <div class="curso-icon">🌱</div>
+      <div class="curso-icon"><img src="assets/iconos/libro-corazon-blue.png" alt="Educar el Corazon Kinder"/></div>
       <div class="curso-meta">
         <div class="curso-colegio">Thezia</div>
         <div class="curso-nombre">Educar el Corazón (Kinder)</div>
@@ -554,7 +548,7 @@
           <div class="info-block"><h4>Dirigido a</h4><p>Familias con hijos en Kinder</p></div>
           <div class="info-block"><h4>Taller para</h4><p>Ambos padres</p></div>
         </div>
-        <div class="cta-wrap"><a href="#" class="btn-inscribir">Inscribirme →</a></div>
+        <div class="cta-wrap"><a href="https://docs.google.com/forms/d/e/1FAIpQLScVAgSpjlwWazUwYDpYrR_pOvheJELPwmhggYMozMRWR-xPVQ/viewform" class="btn-inscribir">Inscribirme →</a></div>
       </div>
     </div>
   </div>
@@ -562,7 +556,7 @@
   <!-- DIRECCIÓN HOGAR EMPRESA -->
   <div class="curso">
     <div class="curso-header" onclick="toggle(this)">
-      <div class="curso-icon">🏠</div>
+      <div class="curso-icon"><img src="assets/iconos/checklist.png" alt="Direccion Hogar Empresa"/></div>
       <div class="curso-meta">
         <div class="curso-colegio">Thezia</div>
         <div class="curso-nombre">Dirección Hogar Empresa</div>
@@ -590,7 +584,7 @@
           <div class="sesion-row"><div class="sesion-num">3</div><div class="sesion-info"><div class="sesion-tema">Por definir</div><div class="sesion-fecha">26 de enero 2027</div></div></div>
           <div class="sesion-row"><div class="sesion-num">4</div><div class="sesion-info"><div class="sesion-tema">Por definir</div><div class="sesion-fecha">22 de abril 2027</div></div></div>
         </div>
-        <div class="cta-wrap"><a href="#" class="btn-inscribir">Inscribirme →</a></div>
+        <div class="cta-wrap"><a href="https://docs.google.com/forms/d/e/1FAIpQLScgdprOHLWU0Z-7j9d1Dc7mR5SJGZ4YzDRPjaOylDxtpL68Xg/viewform" class="btn-inscribir">Inscribirme →</a></div>
       </div>
     </div>
   </div>
@@ -598,7 +592,7 @@
   <!-- CRECER ENTRE PANTALLAS -->
   <div class="curso">
     <div class="curso-header" onclick="toggle(this)">
-      <div class="curso-icon">📱</div>
+      <div class="curso-icon"><img src="assets/iconos/tablet.png" alt="Crecer Entre Pantallas"/></div>
       <div class="curso-meta">
         <div class="curso-colegio">Campogrande</div>
         <div class="curso-nombre">Crecer Entre Pantallas</div>
@@ -619,7 +613,7 @@
           <div class="info-block"><h4>Dirigido a</h4><p>Familias con hijos de 3 a 12 años</p></div>
           <div class="info-block"><h4>Taller para</h4><p>Ambos padres</p></div>
         </div>
-        <div class="cta-wrap"><a href="#" class="btn-inscribir">Inscribirme →</a></div>
+        <div class="cta-wrap"><a href="https://docs.google.com/forms/d/e/1FAIpQLSdoYePTMq9i7ce6jbRf5XG0f7oMbAtgEcTIlGGGAPwECqwtoQ/viewform" class="btn-inscribir">Inscribirme →</a></div>
       </div>
     </div>
   </div>
@@ -627,7 +621,7 @@
   <!-- CUANDO JUGAR -->
   <div class="curso">
     <div class="curso-header" onclick="toggle(this)">
-      <div class="curso-icon">🎮</div>
+      <div class="curso-icon"><img src="assets/iconos/grafica-baja.png" alt="Cuando Jugar Deja de Ser un Juego"/></div>
       <div class="curso-meta">
         <div class="curso-colegio">Campogrande</div>
         <div class="curso-nombre">Cuando Jugar Deja de Ser un Juego</div>
@@ -648,7 +642,7 @@
           <div class="info-block"><h4>Dirigido a</h4><p>Familias con hijos de 12 a 18 años</p></div>
           <div class="info-block"><h4>Taller para</h4><p>Ambos padres</p></div>
         </div>
-        <div class="cta-wrap"><a href="#" class="btn-inscribir">Inscribirme →</a></div>
+        <div class="cta-wrap"><a href="https://docs.google.com/forms/d/e/1FAIpQLSf6-Yn8xtBSgVrDVdAt2KgbTobqG5eg2UwoJ5StuFT-51xfAw/viewform" class="btn-inscribir">Inscribirme →</a></div>
       </div>
     </div>
   </div>
@@ -665,7 +659,7 @@
   <!-- BARANSÚ -->
   <div class="curso">
     <div class="curso-header" onclick="toggle(this)">
-      <div class="curso-icon">🌿</div>
+      <div class="curso-icon"><img src="assets/iconos/balanza.png" alt="Baransu"/></div>
       <div class="curso-meta">
         <div class="curso-colegio">Thezia</div>
         <div class="curso-nombre">Baransú</div>
@@ -686,7 +680,7 @@
           <div class="info-block"><h4>Dirigido a</h4><p>Todas las edades</p></div>
           <div class="info-block"><h4>Taller para</h4><p>Ambos padres</p></div>
         </div>
-        <div class="cta-wrap"><a href="#" class="btn-inscribir">Inscribirme →</a></div>
+        <div class="cta-wrap"><a href="https://docs.google.com/forms/d/e/1FAIpQLSf4-5VZ34nxbq9b2KQzAxHV3dQto5o0GXjGJ7gjYH1s172_Cg/viewform" class="btn-inscribir">Inscribirme →</a></div>
       </div>
     </div>
   </div>
@@ -694,7 +688,7 @@
   <!-- GESTOS DE CARIÑO THEZIA -->
   <div class="curso">
     <div class="curso-header" onclick="toggle(this)">
-      <div class="curso-icon">❤️</div>
+      <div class="curso-icon"><img src="assets/iconos/abrazo-blue.png" alt="Gestos de Carino"/></div>
       <div class="curso-meta">
         <div class="curso-colegio">Thezia</div>
         <div class="curso-nombre">Gestos de Cariño</div>
@@ -720,7 +714,7 @@
           <div class="sesion-row"><div class="sesion-num">1</div><div class="sesion-info"><div class="sesion-tema">Por definir</div><div class="sesion-fecha">14 de abril 2027 · 19:30 h</div></div></div>
           <div class="sesion-row"><div class="sesion-num">2</div><div class="sesion-info"><div class="sesion-tema">Por definir</div><div class="sesion-fecha">15 de abril 2027 · 19:30 h</div></div></div>
         </div>
-        <div class="cta-wrap"><a href="#" class="btn-inscribir">Inscribirme →</a></div>
+        <div class="cta-wrap"><a href="https://docs.google.com/forms/d/e/1FAIpQLSevIoQ2vA8-h68jzlY8SNORlfYRyb6EHVSUxg_18Lgcfx0Ltg/viewform" class="btn-inscribir">Inscribirme →</a></div>
       </div>
     </div>
   </div>
@@ -728,7 +722,7 @@
   <!-- GESTOS DE CARIÑO CAMPOGRANDE -->
   <div class="curso">
     <div class="curso-header" onclick="toggle(this)">
-      <div class="curso-icon">❤️</div>
+      <div class="curso-icon"><img src="assets/iconos/abrazo-amber.png" alt="Gestos de Carino"/></div>
       <div class="curso-meta">
         <div class="curso-colegio">Campogrande</div>
         <div class="curso-nombre">Gestos de Cariño</div>
@@ -754,7 +748,7 @@
           <div class="sesion-row"><div class="sesion-num">1</div><div class="sesion-info"><div class="sesion-tema">Por definir</div><div class="sesion-fecha">13 de abril 2027 · 19:30 h</div></div></div>
           <div class="sesion-row"><div class="sesion-num">2</div><div class="sesion-info"><div class="sesion-tema">Por definir</div><div class="sesion-fecha">14 de abril 2027 · 19:30 h</div></div></div>
         </div>
-        <div class="cta-wrap"><a href="#" class="btn-inscribir">Inscribirme →</a></div>
+        <div class="cta-wrap"><a href="https://docs.google.com/forms/d/e/1FAIpQLSdz9_iIYs9_VzQjDWwrbKcXLQKCakyHgPQz-qYNvqDhlVhRdw/viewform" class="btn-inscribir">Inscribirme →</a></div>
       </div>
     </div>
   </div>
@@ -771,7 +765,7 @@
   <!-- VIVIR LA PIEDAD -->
   <div class="curso">
     <div class="curso-header" onclick="toggle(this)">
-      <div class="curso-icon">🙏</div>
+      <div class="curso-icon"><img src="assets/iconos/paloma.png" alt="Vivir la Piedad en Familia"/></div>
       <div class="curso-meta">
         <div class="curso-colegio">Campogrande</div>
         <div class="curso-nombre">Vivir la Piedad en Familia</div>
@@ -792,7 +786,7 @@
           <div class="info-block"><h4>Dirigido a</h4><p>Familias con hijos de 6 a 12 años</p></div>
           <div class="info-block"><h4>Taller para</h4><p>Ambos padres</p></div>
         </div>
-        <div class="cta-wrap"><a href="#" class="btn-inscribir">Inscribirme →</a></div>
+        <div class="cta-wrap"><a href="https://docs.google.com/forms/d/e/1FAIpQLSemzdqA8KILssV55eL0_DstHJo14SDoRqGNrunXNfGqP2nU7g/viewform" class="btn-inscribir">Inscribirme →</a></div>
       </div>
     </div>
   </div>
