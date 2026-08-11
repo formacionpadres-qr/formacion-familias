@@ -802,6 +802,19 @@
     const curso = header.closest('.curso');
     curso.classList.toggle('open');
   }
+
+  function toggleNav() {
+    document.getElementById('navDropdown').classList.toggle('open');
+  }
+  function closeNav() {
+    document.getElementById('navDropdown').classList.remove('open');
+  }
+  document.addEventListener('click', function (e) {
+    const dropdown = document.getElementById('navDropdown');
+    if (dropdown.classList.contains('open') && !dropdown.contains(e.target)) {
+      dropdown.classList.remove('open');
+    }
+  });
 </script>
 </body>
 </html>
